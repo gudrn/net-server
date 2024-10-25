@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package initial;
+
+message initialPayload {
+  string deviceId = 1;
+  uint32 payloadId = 2;
+  float latency = 3;
+}
