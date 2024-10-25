@@ -4,7 +4,7 @@ import { packetParser } from '../utils/parser/packetParser.js';
 import { getHandlerById } from '../handlers/index.js';
 import { getUserById } from '../session/user.session.js';
 import { handleError } from '../utils/error/errorHandler.js';
-
+import { getProtoMessages } from '../init/loadProtos.js';
 export const onDate = (socket) => async (data) => {
   socket.buffer = Buffer.concat([socket.buffer, data]);
 
@@ -19,6 +19,7 @@ export const onDate = (socket) => async (data) => {
       try {
         switch (packetType) {
           case PACKET_TYPE.PING:
+            const protoMessages = getProtoMessages();
             break;
           case PACKET_TYPE.NORMAL:
             const packetparser = packetParser(packet);

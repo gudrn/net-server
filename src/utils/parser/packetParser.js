@@ -40,7 +40,7 @@ export const packetParser = (data) => {
   try {
     payload = payloadType.decode(packet.payload);
   } catch (error) {
-    console.error(error);
+    throw new CustomError(ErrorCodes.INVALID_PAYLOAD, `유효하지 않은 페이로드입니다: ${error}`);
   }
 
   const expectedFields = Object.keys(payloadType.fields);

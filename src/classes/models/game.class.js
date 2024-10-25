@@ -1,9 +1,12 @@
+import IntervalManager from '../managers/interval.manager.js';
+
 const MAX_PLAYERS = 4;
 
 class Game {
   constructor(id) {
     this.id = id;
     this.users = [];
+    this.intervalManager = new IntervalManager();
     this.state = `waiting`; // waiting, inProgress
   }
 
@@ -13,23 +16,25 @@ class Game {
     }
     this.users.push(user);
 
-    if (this.users.length === MAX_PLAYERS) {
-      setTimeout(() => {
-        this.startGame();
-      }, 3000);
-    }
+    // this.intervalManager.addPlayer(user.id, user.latency, 1000);
+    // if (this.users.length === MAX_PLAYERS) {
+    //   setTimeout(() => {
+    //     this.startGame();
+    //   }, 3000);
+    // }
   }
 
-  getUser(userId) {
-    return this.users.find((user) => user.id === userId);
+  getUser(socket) {
+    return this.users.find((user) => user.socket === socket);
   }
 
   getUsers() {
     return this.users;
   }
 
-  removeUser(userId) {
-    this.users = this.users.filter((user) => user.id !== userId);
+  removeUser(socket) {
+    this.users = this.users.filter((user) => user.socket !== socket);
+    this.intervalManager.removePlayer(socket);
     if (this.users.length < MAX_PLAYERS) {
       this.state = `waiting`;
     }
@@ -37,6 +42,11 @@ class Game {
 
   startGame() {
     this.state = `inProgress`;
+  }
+  updateUserPosition(socket, x, y) {
+    const user = this.getUser(socket);
+    user.x = x;
+    user.y = y;
   }
 }
 export default Game;

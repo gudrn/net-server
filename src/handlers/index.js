@@ -2,11 +2,16 @@ import { HANDLER_ID } from '../constants/handlerIds.js';
 import CustomError from '../utils/error/customError.js';
 import { ErrorCodes } from '../utils/error/errorCodes.js';
 import initialHandler from './user/initial.handler.js';
+import locationUpdateHandler from './user/locationUpdate.handler.js';
 
 const handlers = {
   [HANDLER_ID.INITIAL]: {
     handler: initialHandler,
     prototype: 'initial.initialPayload',
+  },
+  [HANDLER_ID.LOCATION_UPDATE]: {
+    handler: locationUpdateHandler,
+    prototype: 'game.LocationUpdatePayload',
   },
 };
 
