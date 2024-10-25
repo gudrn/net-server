@@ -14,13 +14,13 @@ export const createResponse = (handlerId, responseCode, data = null, userId) => 
   };
 
   const buffer = response.encode(responsePayload).finish();
-  const packetLength = Buffer.alloc(config.packet.headerLength);
+  const packetLength = Buffer.alloc(config.packet.totalLength);
   packetLength.writeUInt32BE(
-    buffer.length + config.packet.headerLength + config.packet.packetTypeLength,
+    buffer.length + config.packet.totalLength + config.packet.typeLength,
     0,
   );
 
-  const packetType = Buffer.alloc(config.packet.packetTypeLength);
+  const packetType = Buffer.alloc(config.packet.typeLength);
   packetType.writeUInt8(PACKET_TYPE.NORMAL, 0);
 
   return Buffer.concat([packetLength, packetType, buffer]);
