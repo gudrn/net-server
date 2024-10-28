@@ -7,7 +7,6 @@ import { findUserByDeviceId, createUser } from '../../db/user/user.db.js';
 const initialHandler = async ({ socket, userId, payload }) => {
   try {
     const { deviceId, latency, playerId } = payload;
-    console.log(deviceId);
     let user = await findUserByDeviceId(deviceId);
     if (!user) {
       user = await createUser(deviceId);

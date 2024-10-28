@@ -10,17 +10,17 @@ export const onEnd = (socket) => async () => {
   if (user) {
     try {
       const connection = await pools.USER_DB.getConnection();
-      try {
-        await connection.query('UPDATE users SET x = ?, y = ? WHERE device_id = ?', [
-          user.x,
-          user.y,
-          user.id,
-        ]);
-      } finally {
-        connection.release();
-      }
-    } catch (error) {
-      console.error('유저 위치 저장 중 오류 발생:', error);
+      await connection.beginTransaction();
+      // 쿼리 실행
+      const result = await connection.query('UPDATE users SET x = ?, y = ? WHERE device_id = ?', [
+        user.x,
+        user.y,
+        user.id,
+      ]);
+      // 트랜잭션 커밋
+      await connection.commit();
+    } catch (connectionError) {
+      console.error('데이터베이스 연결 중 오류 발생:', connectionError);
     }
   }
 
