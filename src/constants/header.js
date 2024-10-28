@@ -5,4 +5,5 @@ export const PACKET_TYPE = {
   PING: 0,
   NORMAL: 1,
   LOCATION: 3,
+  LAST_POSITION: 4,
 };

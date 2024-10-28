@@ -4,15 +4,15 @@ import { createResponse } from '../../utils/response/createResponse.js';
 import { handleError } from '../../utils/error/errorHandler.js';
 import { getGameSession } from '../../session/game.session.js';
 import { findUserByDeviceId, createUser } from '../../db/user/user.db.js';
-
 const initialHandler = async ({ socket, userId, payload }) => {
   try {
     const { deviceId, latency, playerId } = payload;
-    let findUser = await findUserByDeviceId(deviceId);
-    if (!findUser) {
-      findUser = await createUser(deviceId);
+    console.log(deviceId);
+    let user = await findUserByDeviceId(deviceId);
+    if (!user) {
+      user = await createUser(deviceId);
     }
-    const user = addUser(socket, findUser.id, playerId, latency);
+    user = addUser(socket, userId, playerId, latency);
     const gameSession = getGameSession();
     gameSession.addUser(user);
     // 유저 정보 응답 생성

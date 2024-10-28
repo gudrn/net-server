@@ -3,7 +3,8 @@ import CustomError from '../utils/error/customError.js';
 import { ErrorCodes } from '../utils/error/errorCodes.js';
 import initialHandler from './user/initial.handler.js';
 import locationUpdateHandler from './user/locationUpdate.handler.js';
-
+import savePositionHandler from './user/savePosition.handler.js';
+import lastPositionHandler from './user/lastPosition.handler.js';
 const handlers = {
   [HANDLER_ID.INITIAL]: {
     handler: initialHandler,
@@ -12,6 +13,14 @@ const handlers = {
   [HANDLER_ID.LOCATION_UPDATE]: {
     handler: locationUpdateHandler,
     prototype: 'game.LocationUpdatePayload',
+  },
+  [HANDLER_ID.SAVE_POSITION]: {
+    handler: savePositionHandler,
+    prototype: 'gameSaveLocation.SavePositionPayload',
+  },
+  [HANDLER_ID.LAST_POSITION_REQUEST]: {
+    handler: lastPositionHandler,
+    prototype: 'gameLastPosition.LastPositionRequest',
   },
 };
 

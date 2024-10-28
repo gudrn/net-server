@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package gameLastPosition;
+
+message LastPositionResponse {
+  float x = 1;
+  float y = 2;
+}
+
+message LastPositionRequest {
+    string deviceId = 1;
+  }
