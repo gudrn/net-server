@@ -13,5 +13,14 @@ CREATE TABLE IF NOT EXISTS game_end
     start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     end_time   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     score      INT       DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS user_location
+(
+    id    VARCHAR(36) PRIMARY KEY,
+    user_id    VARCHAR(36) NOT NULL,
+    x      FLOAT NOT NULL,
+    y      FLOAT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );

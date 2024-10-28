@@ -1,6 +1,5 @@
 import pools from '../database.js';
 import { SQL_QUERIES } from './user.queries.js';
-import { v4 as uuidv4 } from 'uuid';
 import { toCamelCase } from '../../utils/transformCase.js';
 
 export const findUserByDeviceId = async (deviceId) => {
@@ -9,9 +8,8 @@ export const findUserByDeviceId = async (deviceId) => {
 };
 
 export const createUser = async (deviceId) => {
-  const id = uuidv4();
-  await pools.USER_DB.query(SQL_QUERIES.CREATE_USER, [id, deviceId]);
-  return { id, deviceId };
+  await pools.USER_DB.query(SQL_QUERIES.CREATE_USER, [deviceId]);
+  return { deviceId };
 };
 
 export const updateUserLogin = async (id) => {
