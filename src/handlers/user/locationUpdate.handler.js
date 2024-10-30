@@ -1,9 +1,4 @@
 import { getGameSession } from '../../session/game.session.js';
-import { getProtoMessages } from '../../init/loadProtos.js';
-import { createResponse } from '../../utils/response/createResponse.js';
-import { HANDLER_ID, RESPONSE_SUCCESS_CODE } from '../../constants/handlerIds.js';
-import { config } from '../../config/config.js';
-import { PACKET_TYPE } from '../../constants/header.js';
 
 const locationUpdateHandler = async ({ socket, userId, payload }) => {
   const { x, y, deviceId } = payload;

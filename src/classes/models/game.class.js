@@ -43,11 +43,15 @@ class Game {
   startGame() {
     this.state = `inProgress`;
   }
+
+  // 유저의 위치 정보를 업데이트하는 메서드
   updateUserPosition(socket, x, y) {
     const user = this.getUser(socket);
     user.x = x;
     user.y = y;
   }
+
+  // 모든 유저의 위치 정보를 반환하는 메서드
   getAllLocation(socket) {
     const locationData = this.users
       .filter((user) => user.socket !== socket)

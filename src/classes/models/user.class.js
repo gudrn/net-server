@@ -12,11 +12,9 @@ class User {
   }
 
   updatePostion(x, y) {
-    const deltaTime = Date.now() - this.lastUpdateTime;
-
     // 속도 계산
-    this.velocityX = (x - this.x) / deltaTime;
-    this.velocityY = (y - this.y) / deltaTime;
+    this.velocityX = (x - this.x) / this.latency;
+    this.velocityY = (y - this.y) / this.latency;
 
     this.x = x;
     this.y = y;
