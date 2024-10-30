@@ -1,5 +1,5 @@
 import IntervalManager from '../managers/interval.manager.js';
-
+import { createLocationPacket } from '../../utils/notification/game.notification.js';
 const MAX_PLAYERS = 4;
 
 class Game {
@@ -47,6 +47,15 @@ class Game {
     const user = this.getUser(socket);
     user.x = x;
     user.y = y;
+  }
+  getAllLocation(socket) {
+    const locationData = this.users
+      .filter((user) => user.socket !== socket)
+      .map((user) => {
+        const { x, y } = user.calculatePosition(user.latency);
+        return { id: user.id, playId: user.playerId, x, y };
+      });
+    return createLocationPacket(locationData);
   }
 }
 export default Game;
