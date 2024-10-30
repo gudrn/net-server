@@ -60,7 +60,6 @@ export const createLocationPacket = (users) => {
  * @param {Object} position - x, y 좌표를 포함한 위치 객체
  * @returns {Buffer} 생성된 마지막 위치 패킷
  */
-
 export const createLastPositionPacket = (position) => {
   const protoMessages = getProtoMessages();
   const LastPosition = protoMessages.gameLastPosition.LastPositionResponse;
