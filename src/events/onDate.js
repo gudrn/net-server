@@ -19,7 +19,6 @@ export const onDate = (socket) => async (data) => {
       try {
         switch (packetType) {
           case PACKET_TYPE.PING:
-            const protoMessages = getProtoMessages();
             break;
           case PACKET_TYPE.NORMAL:
             const packetparser = packetParser(packet);
