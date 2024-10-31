@@ -62,7 +62,7 @@ export const createLocationPacket = (users) => {
  */
 export const createLastPositionPacket = (position) => {
   const protoMessages = getProtoMessages();
-  const LastPosition = protoMessages.gameLastPosition.LastPositionResponse;
+  const LastPosition = protoMessages.game.LocationUpdatePayload;
 
   const payload = {
     x: position.x,

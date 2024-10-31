@@ -15,11 +15,7 @@ export const packetNames = {
   response: {
     Response: 'response.Response',
   },
-  gameSaveLocation: {
-    SavePositionPayload: 'gameSaveLocation.SavePositionPayload',
-  },
   gameLastPosition: {
-    LastPositionResponse: 'gameLastPosition.LastPositionResponse',
     LastPositionRequest: 'gameLastPosition.LastPositionRequest',
   },
 };

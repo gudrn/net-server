@@ -16,7 +16,7 @@ const handlers = {
   },
   [HANDLER_ID.SAVE_POSITION]: {
     handler: savePositionHandler,
-    prototype: 'gameSaveLocation.SavePositionPayload',
+    prototype: 'game.LocationUpdatePayload',
   },
   [HANDLER_ID.LAST_POSITION_REQUEST]: {
     handler: lastPositionHandler,
