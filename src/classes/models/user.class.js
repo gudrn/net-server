@@ -27,9 +27,15 @@ class User {
     const timeDiff = (currentTime - this.lastUpdateTime + latency) / 1000;
 
     // 현재 속도를 기반으로 예측 위치 계산
+    const predictedX = this.x + this.velocityX * timeDiff;
+    const predictedY = this.y + this.velocityY * timeDiff;
+
+    // 마지막 업데이트 시간 갱신
+    this.lastUpdateTime = currentTime;
+
     return {
-      x: this.x + this.velocityX * timeDiff,
-      y: this.y + this.velocityY * timeDiff,
+      x: predictedX,
+      y: predictedY,
     };
   }
 }
