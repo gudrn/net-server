@@ -24,7 +24,7 @@
 
   - **ID**: `HANDLER_ID.SAVE_POSITION`
   - **설명**: 클라이언트의 현재 위치를 저장합니다.
-  - **프로토타입**: `gameSaveLocation.SavePositionPayload`
+  - **프로토타입**: `game.LocationUpdatePayload`
   - **참고**: 현재 사용하지 않고 빌드 되지 않는 상태에서 임시로 둠. 해당 기능 socket 연결이 끊어지면 위치 저장하게 만듬.
 
 - **LAST_POSITION_REQUEST 핸들러**
